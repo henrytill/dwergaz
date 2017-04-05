@@ -12,9 +12,14 @@ maintainer:          henrytill@gmail.com
 -- copyright:           
 category:            Testing
 build-type:          Simple
-extra-source-files:  ChangeLog.md
 cabal-version:       >=1.10
 tested-with:         GHC == 7.10.2, GHC == 7.10.3, GHC == 8.0.1
+
+extra-source-files:
+  .gitignore
+  .travis.yml
+  ChangeLog.md
+  README.md
 
 source-repository head
   type:     git
