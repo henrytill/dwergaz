@@ -1,6 +1,11 @@
 {-# LANGUAGE GADTs #-}
 
-module Dwergaz where
+module Dwergaz
+  ( Test(..)
+  , Result
+  , isPassed
+  , runTest
+  ) where
 
 data Test where
   Predicate :: (Eq a, Show a) => String -> (a -> Bool) -> a -> Test
