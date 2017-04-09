@@ -1,7 +1,7 @@
 {-# LANGUAGE GADTs #-}
 
 -- |
--- Module      : Dwergaz
+-- Module      : Test.Dwergaz
 -- Description : A minimal testing library
 -- Copyright   : (c) 2017, Henry Till
 -- License     : BSD3
@@ -13,7 +13,7 @@
 -- See the <https://github.com/xngns/dwergaz/blob/master/tests/Main.hs tests> for a usage example.
 --
 
-module Dwergaz
+module Test.Dwergaz
   ( Test(..)
   , Result
   , isPassed
