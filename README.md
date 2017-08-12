@@ -5,4 +5,4 @@
 
 `dwergaz` is a minimal testing library with no external dependencies.
 
-See the [tests](tests/Main.hs) for a usage example.
+See the [tests](https://github.com/xngns/dwergaz/blob/master/tests/Main.hs) for a usage example.
