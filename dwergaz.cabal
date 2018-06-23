@@ -4,7 +4,7 @@
 name:                dwergaz
 version:             0.2.0.2
 synopsis:            A minimal testing library
-description:         A minimal testing library
+description:         dwergaz is a minimal testing library with no external dependencies.
 license:             BSD3
 license-file:        LICENSE
 author:              Henry Till
