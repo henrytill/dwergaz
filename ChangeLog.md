@@ -15,3 +15,7 @@
 ## 0.2.0.1  -- 2017-08-12
 
 * Loosened constraints on `base` for compatibility with GHC 8.2.1.
+
+## 0.2.0.2  -- 2018-06-23
+
+* Loosened constraints on `base` for compatibility with GHC 8.4.3.
