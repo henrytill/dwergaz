@@ -1,9 +1,11 @@
-module Main where
+module Main (main) where
 
-import Control.Monad (unless)
-import Data.Either (isLeft, isRight)
-import System.Exit (exitFailure)
-import Test.Dwergaz
+import           Control.Monad (unless)
+import           Data.Either   (isLeft, isRight)
+import           System.Exit   (exitFailure)
+
+import           Test.Dwergaz
+
 
 testFun01 :: a -> String
 testFun01 = const "quux"
