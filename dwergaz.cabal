@@ -2,7 +2,7 @@
 -- documentation, see http://haskell.org/cabal/users-guide/
 
 name:                dwergaz
-version:             0.2.0.2
+version:             0.2.0.3
 synopsis:            A minimal testing library
 description:         dwergaz is a minimal testing library with no external dependencies.
 license:             BSD3
