@@ -1,3 +1,7 @@
-dist
+*~
+.ghc.environment.*
+/dist/
+/dist-newstyle/
+cabal.project.local
 *.nix
 result
