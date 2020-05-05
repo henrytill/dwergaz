@@ -23,3 +23,7 @@
 ## 0.2.0.3  -- 2018-11-14
 
 * Loosened constraints on `base` for compatibility with GHC 8.6.2.
+
+## 0.2.0.4  -- 2020-05-05
+
+* Loosened constraints on `base` for compatibility with GHC 8.8.x.
