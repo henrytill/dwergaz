@@ -10,7 +10,7 @@
 --
 -- = Usage:
 --
--- See the <https://github.com/xngns/dwergaz/blob/master/tests/Main.hs tests> for a usage example.
+-- See the <https://github.com/henrytill/dwergaz/blob/master/tests/Main.hs tests> for a usage example.
 --
 module Test.Dwergaz
   ( Test(..)
