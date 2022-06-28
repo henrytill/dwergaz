@@ -27,3 +27,8 @@
 ## 0.2.0.4  -- 2020-05-05
 
 * Loosened constraints on `base` for compatibility with GHC 8.8.x.
+
+## 0.2.0.5  -- 2022-06-27
+
+* Updated copyright dates.
+* Moved source repository.
