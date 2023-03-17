@@ -41,9 +41,7 @@ isPassed (Passed _) = True
 isPassed _          = False
 
 runTest :: Test -> Result
-runTest (Predicate n p v)
-  | p v                   = Passed n
-  | otherwise             = Failed n True False
-runTest (Expect n f e a)
-  | f e a                 = Passed n
-  | otherwise             = Failed n e a
+runTest (Predicate n p v) | p v       = Passed n
+                          | otherwise = Failed n True False
+runTest (Expect n f e a)  | f e a     = Passed n
+                          | otherwise = Failed n e a
