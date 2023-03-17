@@ -1,4 +1,4 @@
-{-# LANGUAGE GADTs #-}
+{-# LANGUAGE ExistentialQuantification #-}
 
 -- |
 -- Module      : Test.Dwergaz
@@ -20,13 +20,13 @@ module Test.Dwergaz
   ) where
 
 
-data Test where
-  Predicate :: (Eq a, Show a) => String -> (a -> Bool) -> a -> Test
-  Expect    :: (Eq a, Show a) => String -> (a -> a -> Bool) -> a -> a -> Test
+data Test
+  = forall a. (Eq a, Show a) => Predicate String (a -> Bool)      a
+  | forall a. (Eq a, Show a) => Expect    String (a -> a -> Bool) a a
 
-data Result where
-  Passed :: String -> Result
-  Failed :: Show a => String -> a -> a -> Result
+data Result
+  = Passed String
+  | forall a. (Show a) => Failed String a a
 
 instance Show Result where
   show (Failed n e a) =
