@@ -32,3 +32,9 @@
 
 * Updated copyright dates.
 * Moved source repository.
+
+## 0.2.0.6  -- 2023-08-26
+
+* Switched from GADTs to ExistentialQuantification, as we didn't need the full power of GADTs.
+* Switched to Haskell98, as we didn't need the full power of Haskell2010.
+* Updated copyright dates.
