@@ -40,5 +40,5 @@ results = fmap runTest exampleTests
 
 main :: IO ()
 main =  do
-  _ <- mapM_ print results
+  mapM_ print results
   unless (all isPassed results) exitFailure
