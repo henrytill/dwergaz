@@ -1,11 +1,9 @@
 module Main (main) where
 
-import           Control.Monad (unless)
-import           Data.Either   (isLeft, isRight)
-import           System.Exit   (exitFailure)
-
-import           Test.Dwergaz
-
+import Control.Monad (unless)
+import Data.Either (isLeft, isRight)
+import System.Exit (exitFailure)
+import Test.Dwergaz
 
 testFun01 :: a -> String
 testFun01 = const "quux"
@@ -21,24 +19,24 @@ testFun04 = const (Right 42)
 
 expectExample01, expectExample02 :: Test
 expectExample01 = Expect "Strings are equal" (==) "quux" (testFun01 "quux")
-expectExample02 = Expect "Ints are equal"    (==) 42     (testFun02 "quux")
+expectExample02 = Expect "Ints are equal" (==) 42 (testFun02 "quux")
 
 predicateExample01, predicateExample02 :: Test
-predicateExample01 = Predicate "Value is a Left"  isLeft  (testFun03 "quux")
+predicateExample01 = Predicate "Value is a Left" isLeft (testFun03 "quux")
 predicateExample02 = Predicate "Value is a Right" isRight (testFun04 "quux")
 
 exampleTests :: [Test]
 exampleTests =
-  [ expectExample01
-  , expectExample02
-  , predicateExample01
-  , predicateExample02
+  [ expectExample01,
+    expectExample02,
+    predicateExample01,
+    predicateExample02
   ]
 
 results :: [Result]
 results = fmap runTest exampleTests
 
 main :: IO ()
-main =  do
+main = do
   mapM_ print results
   unless (all isPassed results) exitFailure
