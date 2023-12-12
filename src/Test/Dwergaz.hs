@@ -22,21 +22,15 @@ where
 data Test
   = forall a. (Eq a, Show a) => Predicate String (a -> Bool) a
   | forall a. (Eq a, Show a) => Expect String (a -> a -> Bool) a a
+  | Fail String
 
 data Result
   = Passed String
-  | forall a. (Show a) => Failed String a a
+  | Failed String
 
 instance Show Result where
-  show (Failed n e a) =
-    "FAILED:   "
-      ++ n
-      ++ "\nEXPECTED:   "
-      ++ show e
-      ++ "\nACTUAL:     "
-      ++ show a
-  show (Passed n) =
-    "PASSED:   " ++ n
+  show (Failed n) = "FAILED:   " ++ n
+  show (Passed n) = "PASSED:   " ++ n
 
 isPassed :: Result -> Bool
 isPassed (Passed _) = True
@@ -45,7 +39,8 @@ isPassed _ = False
 runTest :: Test -> Result
 runTest (Predicate n p v)
   | p v = Passed n
-  | otherwise = Failed n True False
+  | otherwise = Failed n
 runTest (Expect n f e a)
   | f e a = Passed n
-  | otherwise = Failed n e a
+  | otherwise = Failed n
+runTest (Fail n) = Failed n
