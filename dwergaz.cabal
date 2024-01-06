@@ -11,10 +11,8 @@ homepage:            https://github.com/henrytill/dwergaz
 copyright:           Copyright (c) 2017-2024, Henry Till
 category:            Testing
 build-type:          Simple
+extra-doc-files:     ChangeLog.md
 tested-with:         GHC ==9.4.8 || ==9.6.3 || ==9.8.1
-
-extra-doc-files:
-  ChangeLog.md
 
 source-repository head
   type:     git
