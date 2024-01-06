@@ -13,10 +13,6 @@ category:            Testing
 build-type:          Simple
 tested-with:         GHC ==9.4.8 || ==9.6.3 || ==9.8.1
 
-extra-source-files:
-  .gitignore
-  README.md
-
 extra-doc-files:
   ChangeLog.md
 
