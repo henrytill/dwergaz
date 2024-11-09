@@ -23,21 +23,23 @@ where
 import Text.PrettyPrint
 
 data Test
-  = forall a. (Eq a, Show a) => Predicate String (a -> Bool) a
-  | forall a. (Eq a, Show a) => Expect String (a -> a -> Bool) a a
+  = forall a. (Eq a, Show a) => Expect String (a -> a -> Bool) a a
+  | forall a. (Eq a, Show a) => Predicate String (a -> Bool) a
 
 data Result
   = Passed String
-  | forall a. (Show a) => Failed String a a
+  | forall a. (Show a) => FailedExpect String a a
+  | Failed String
 
 prettyResult :: Result -> Doc
 prettyResult (Passed n) = text "PASSED:" <+> text n
-prettyResult (Failed n e a) =
+prettyResult (FailedExpect n e a) =
   vcat
     [ text "FAILED:" <+> text n,
       nest 2 (text "EXPECTED:") <+> text (show e),
       nest 2 (text "ACTUAL:") <+> text (show a)
     ]
+prettyResult (Failed n) = text "FAILED:" <+> text n
 
 resultToString :: Result -> String
 resultToString = render . prettyResult
@@ -47,9 +49,9 @@ resultIsPassed (Passed _) = True
 resultIsPassed _ = False
 
 runTest :: Test -> Result
-runTest (Predicate n p v)
-  | p v = Passed n
-  | otherwise = Failed n True False
 runTest (Expect n f e a)
   | f e a = Passed n
-  | otherwise = Failed n e a
+  | otherwise = FailedExpect n e a
+runTest (Predicate n p v)
+  | p v = Passed n
+  | otherwise = Failed n
