@@ -40,4 +40,4 @@ main :: IO ()
 main = do
   mapM_ (putStrLn . resultToString) results
   -- The following should use 'Control.Monad.unless' in real usage.
-  when (all isPassed results) exitFailure
+  when (all resultIsPassed results) exitFailure

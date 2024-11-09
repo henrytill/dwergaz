@@ -15,7 +15,7 @@ module Test.Dwergaz
   ( Test (..),
     Result,
     resultToString,
-    isPassed,
+    resultIsPassed,
     runTest,
   )
 where
@@ -42,9 +42,9 @@ prettyResult (Failed n e a) =
 resultToString :: Result -> String
 resultToString = render . prettyResult
 
-isPassed :: Result -> Bool
-isPassed (Passed _) = True
-isPassed _ = False
+resultIsPassed :: Result -> Bool
+resultIsPassed (Passed _) = True
+resultIsPassed _ = False
 
 runTest :: Test -> Result
 runTest (Predicate n p v)
