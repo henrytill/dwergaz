@@ -27,12 +27,11 @@ data Test
   | forall a. (Eq a, Show a) => Predicate String (a -> Bool) a
 
 data Result
-  = Passed String
-  | forall a. (Show a) => FailedExpect String a a
+  = forall a. (Show a) => FailedExpect String a a
   | Failed String
+  | Passed String
 
 prettyResult :: Result -> Doc
-prettyResult (Passed n) = text "PASSED:" <+> text n
 prettyResult (FailedExpect n e a) =
   vcat
     [ text "FAILED:" <+> text n,
@@ -40,6 +39,7 @@ prettyResult (FailedExpect n e a) =
       nest 2 (text "ACTUAL:") <+> text (show a)
     ]
 prettyResult (Failed n) = text "FAILED:" <+> text n
+prettyResult (Passed n) = text "PASSED:" <+> text n
 
 resultToString :: Result -> String
 resultToString = render . prettyResult
