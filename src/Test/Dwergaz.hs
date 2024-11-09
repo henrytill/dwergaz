@@ -23,7 +23,7 @@ where
 import Text.PrettyPrint
 
 data Test
-  = forall a. (Eq a, Show a) => Expect
+  = forall a. (Show a) => Expect
       -- | Test description
       String
       -- | Test function
@@ -32,7 +32,7 @@ data Test
       a
       -- | Actual value
       a
-  | forall a. (Eq a, Show a) => Predicate
+  | forall a. (Show a) => Predicate
       -- | Test description
       String
       -- | Predicate function
