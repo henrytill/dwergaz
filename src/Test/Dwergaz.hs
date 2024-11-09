@@ -14,10 +14,13 @@
 module Test.Dwergaz
   ( Test (..),
     Result,
+    resultToString,
     isPassed,
     runTest,
   )
 where
+
+import Text.PrettyPrint
 
 data Test
   = forall a. (Eq a, Show a) => Predicate String (a -> Bool) a
@@ -27,16 +30,17 @@ data Result
   = Passed String
   | forall a. (Show a) => Failed String a a
 
-instance Show Result where
-  show (Failed n e a) =
-    "FAILED:   "
-      ++ n
-      ++ "\nEXPECTED:   "
-      ++ show e
-      ++ "\nACTUAL:     "
-      ++ show a
-  show (Passed n) =
-    "PASSED:   " ++ n
+prettyResult :: Result -> Doc
+prettyResult (Passed n) = text "PASSED:" <+> text n
+prettyResult (Failed n e a) =
+  vcat
+    [ text "FAILED:" <+> text n,
+      nest 2 (text "EXPECTED:") <+> text (show e),
+      nest 2 (text "ACTUAL:") <+> text (show a)
+    ]
+
+resultToString :: Result -> String
+resultToString = render . prettyResult
 
 isPassed :: Result -> Bool
 isPassed (Passed _) = True

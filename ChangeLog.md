@@ -38,3 +38,7 @@
 * Switched from GADTs to ExistentialQuantification, as we didn't need the full power of GADTs.
 * Switched to Haskell98, as we didn't need the full power of Haskell2010.
 * Updated copyright dates.
+
+## 0.3.0.0
+
+* Removed `Show` instance for `Result`.  `Result` output should now be acquired with `resultToString`.

@@ -1,6 +1,6 @@
 module Main (main) where
 
-import Control.Monad (unless)
+import Control.Monad (when)
 import Data.Either (isLeft, isRight)
 import System.Exit (exitFailure)
 import Test.Dwergaz
@@ -9,13 +9,13 @@ testFun01 :: a -> String
 testFun01 = const "quux"
 
 testFun02 :: a -> Int
-testFun02 = const 42
+testFun02 = const 43
 
 testFun03 :: a -> Either String String
 testFun03 = const (Left "quux")
 
 testFun04 :: a -> Either String Int
-testFun04 = const (Right 42)
+testFun04 = const (Left "quux")
 
 expectExample01, expectExample02 :: Test
 expectExample01 = Expect "Strings are equal" (==) "quux" (testFun01 "quux")
@@ -38,5 +38,6 @@ results = fmap runTest exampleTests
 
 main :: IO ()
 main = do
-  mapM_ print results
-  unless (all isPassed results) exitFailure
+  mapM_ (putStrLn . resultToString) results
+  -- The following should use 'Control.Monad.unless' in real usage.
+  when (all isPassed results) exitFailure

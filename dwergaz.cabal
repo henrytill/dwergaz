@@ -1,6 +1,6 @@
 cabal-version:       2.4
 name:                dwergaz
-version:             0.2.0.6
+version:             0.3.0.0
 synopsis:            A minimal testing library
 description:         dwergaz is a minimal testing library with no external dependencies.
 license:             ISC
@@ -23,6 +23,7 @@ library
   -- other-modules:
   -- other-extensions:
   build-depends:       base >=4.8 && <5
+                     , pretty >=1.1 && <1.2
   hs-source-dirs:      src
   default-language:    Haskell98
   ghc-options:         -Wall
