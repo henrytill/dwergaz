@@ -44,3 +44,4 @@
 * Removed `Show` instance for `Result`.  `Result` output should now be acquired with `resultToString`.
 * Renamed `isPassed` to `resultIsPassed` for consistency with `resultToString`.
 * Removed (unnecessary) `Eq` constraints from `Test`.
+* Added a second type variable `b` to `Expect`, allowing a wider variety of tests.
