@@ -23,8 +23,22 @@ where
 import Text.PrettyPrint
 
 data Test
-  = forall a. (Eq a, Show a) => Expect String (a -> a -> Bool) a a
-  | forall a. (Eq a, Show a) => Predicate String (a -> Bool) a
+  = forall a. (Eq a, Show a) => Expect
+      -- | Test description
+      String
+      -- | Test function
+      (a -> a -> Bool)
+      -- | Expected value
+      a
+      -- | Actual value
+      a
+  | forall a. (Eq a, Show a) => Predicate
+      -- | Test description
+      String
+      -- | Predicate function
+      (a -> Bool)
+      -- | Argument
+      a
 
 data Result
   = forall a. (Show a) => FailedExpect String a a
