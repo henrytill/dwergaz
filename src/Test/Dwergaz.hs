@@ -34,13 +34,11 @@ data Test
       a
       -- | Actual value
       b
-  | forall a. (Show a) => Predicate
+  | Predicate
       -- | Test description
       String
-      -- | Predicate function
-      (a -> Bool)
-      -- | Argument
-      a
+      -- | Condition
+      Bool
 
 assertEqual ::
   (Eq a, Show a) =>
@@ -59,7 +57,7 @@ assert ::
   -- | Condition to test
   Bool ->
   Test
-assert desc = Predicate desc id
+assert = Predicate
 
 data Result
   = forall a b. (Show a, Show b) => FailedExpect String a b
@@ -87,6 +85,6 @@ runTest :: Test -> Result
 runTest (Expect n f e a)
   | f e a = Passed n
   | otherwise = FailedExpect n e a
-runTest (Predicate n p v)
-  | p v = Passed n
+runTest (Predicate n c)
+  | c = Passed n
   | otherwise = Failed n
