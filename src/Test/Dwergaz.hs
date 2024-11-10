@@ -13,6 +13,8 @@
 -- See the <https://github.com/henrytill/dwergaz/blob/master/test/Main.hs tests> for a usage example.
 module Test.Dwergaz
   ( Test (..),
+    assertEqual,
+    assert,
     Result,
     resultToString,
     resultIsPassed,
@@ -39,6 +41,25 @@ data Test
       (a -> Bool)
       -- | Argument
       a
+
+assertEqual ::
+  (Eq a, Show a) =>
+  -- | Test description
+  String ->
+  -- | Expected value
+  a ->
+  -- | Actual value
+  a ->
+  Test
+assertEqual desc = Expect desc (==)
+
+assert ::
+  -- | Test description
+  String ->
+  -- | Condition to test
+  Bool ->
+  Test
+assert desc = Predicate desc id
 
 data Result
   = forall a b. (Show a, Show b) => FailedExpect String a b

@@ -19,11 +19,11 @@ testFun04 = const (Left "quux")
 
 expectExample01, expectExample02 :: Test
 expectExample01 = Expect "Strings are equal" (==) "quux" (testFun01 "quux")
-expectExample02 = Expect "Ints are equal" (==) 42 (testFun02 "quux")
+expectExample02 = assertEqual "Ints are equal" 42 (testFun02 "quux")
 
 predicateExample01, predicateExample02 :: Test
 predicateExample01 = Predicate "Value is a Left" isLeft (testFun03 "quux")
-predicateExample02 = Predicate "Value is a Right" isRight (testFun04 "quux")
+predicateExample02 = assert "Value is a Right" (isRight (testFun04 "quux"))
 
 exampleTests :: [Test]
 exampleTests =
