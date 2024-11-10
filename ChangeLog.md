@@ -39,7 +39,7 @@
 * Switched to Haskell98, as we didn't need the full power of Haskell2010.
 * Updated copyright dates.
 
-## 0.3.0.0
+## 0.3.0.0  -- 2024-11-09
 
 * Removed `Show` instance for `Result`.  `Result` output should now be acquired with `resultToString`.
 * Renamed `isPassed` to `resultIsPassed` for consistency with `resultToString`.
