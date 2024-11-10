@@ -21,16 +21,18 @@ expectExample01, expectExample02 :: Test
 expectExample01 = Expect "Strings are equal" (==) "quux" (testFun01 "quux")
 expectExample02 = assertEqual "Ints are equal" 42 (testFun02 "quux")
 
-predicateExample01, predicateExample02 :: Test
+predicateExample01, predicateExample02, predicateExample03 :: Test
 predicateExample01 = Predicate "Value is a Left" (isLeft $ testFun03 "quux")
-predicateExample02 = assert "Value is a Right" (isRight (testFun04 "quux"))
+predicateExample02 = assertBool "Value is a Right" (isRight (testFun04 "quux"))
+predicateExample03 = assertFailure "Just fail"
 
 exampleTests :: [Test]
 exampleTests =
   [ expectExample01,
     expectExample02,
     predicateExample01,
-    predicateExample02
+    predicateExample02,
+    predicateExample03
   ]
 
 results :: [Result]

@@ -45,5 +45,5 @@
 * Renamed `isPassed` to `resultIsPassed` for consistency with `resultToString`.
 * Removed (unnecessary) `Eq` constraints from `Test`.
 * Added a second type variable `b` to `Expect`, allowing a wider variety of tests.
-* Added `assert` and `assertEqual` helper functions for creating tests.
+* Added `assertFailure`, `assertBool`, and `assertEqual` helper functions for creating tests.
 * Simplified `Predicate` to only accept a boolean argument instead of separate predicate function and value arguments.
