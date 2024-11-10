@@ -35,11 +35,20 @@ exampleTests =
     predicateExample03
   ]
 
-results :: [Result]
-results = fmap runTest exampleTests
+step :: Result -> (ShowS, Bool) -> (ShowS, Bool)
+step result (f, allPassed) =
+  ( showString (resultToString result) . showChar '\n' . f,
+    resultIsPassed result && allPassed
+  )
+
+results :: (String, Bool)
+results = (buildString mempty, allPassed)
+  where
+    (buildString, allPassed) = foldr (step . runTest) (id, True) exampleTests
 
 main :: IO ()
 main = do
-  mapM_ (putStrLn . resultToString) results
-  -- The following should use 'Control.Monad.unless' in real usage.
-  when (all resultIsPassed results) exitFailure
+  let (output, passed) = results
+  putStr output
+  -- The following should be 'Control.Monad.unless' in real usage.
+  when passed exitFailure
