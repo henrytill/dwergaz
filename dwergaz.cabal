@@ -2,7 +2,7 @@ cabal-version:       2.4
 name:                dwergaz
 version:             0.3.0.0
 synopsis:            A minimal testing library
-description:         dwergaz is a minimal testing library with no external dependencies.
+description:         dwergaz is a minimal testing library.
 license:             ISC
 license-file:        LICENSE
 author:              Henry Till
