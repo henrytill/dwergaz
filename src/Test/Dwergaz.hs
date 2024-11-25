@@ -26,7 +26,9 @@ where
 import Text.PrettyPrint
 
 data Test
-  = forall a b. (Show a, Show b) => Expect
+  = forall a b.
+    (Show a, Show b) =>
+    Expect
       -- | Test description
       String
       -- | Test function
