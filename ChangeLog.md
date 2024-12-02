@@ -47,3 +47,7 @@
 * Added a second type variable `b` to `Expect`, allowing a wider variety of tests.
 * Added `assertFailure`, `assertBool`, and `assertEqual` helper functions for creating tests.
 * Simplified `Predicate` to only accept a boolean argument instead of separate predicate function and value arguments.
+
+## 0.3.0.1  -- 2024-12-02
+
+* Tweaked tests and formatting.
