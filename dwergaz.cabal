@@ -8,7 +8,7 @@ license-file:        LICENSE
 author:              Henry Till
 maintainer:          henrytill@gmail.com
 homepage:            https://github.com/henrytill/dwergaz
-copyright:           Copyright (c) 2017-2024, Henry Till
+copyright:           Copyright (c) 2017-2025, Henry Till
 category:            Testing
 build-type:          Simple
 extra-doc-files:     ChangeLog.md
