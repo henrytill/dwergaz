@@ -52,7 +52,7 @@ assertFailure = flip Predicate False
 assertBool ::
   -- | Test description
   String ->
-  -- | Condition to test
+  -- | Condition
   Bool ->
   Test
 assertBool = Predicate
