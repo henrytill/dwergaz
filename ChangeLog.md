@@ -51,3 +51,8 @@
 ## 0.3.0.1  -- 2024-12-02
 
 * Tweaked tests and formatting.
+
+## 0.3.0.2  -- 2025-02-26
+
+* Updated copyright dates.
+* Tweaked documentation.
