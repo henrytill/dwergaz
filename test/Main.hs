@@ -28,11 +28,17 @@ predicateExample03 = assertFailure "Just fail"
 
 exampleTests :: [Test]
 exampleTests =
-  [ expectExample01,
-    expectExample02,
-    predicateExample01,
-    predicateExample02,
-    predicateExample03
+  [ group
+      "Expect"
+      [ expectExample01,
+        expectExample02
+      ],
+    group
+      "Predicate"
+      [ predicateExample01,
+        predicateExample02,
+        predicateExample03
+      ]
   ]
 
 step :: Result -> (ShowS, Bool) -> (ShowS, Bool)

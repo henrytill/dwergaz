@@ -16,6 +16,7 @@ module Test.Dwergaz
     assertFailure,
     assertBool,
     assertEqual,
+    group,
     Result,
     resultToString,
     resultIsPassed,
@@ -24,6 +25,7 @@ module Test.Dwergaz
 where
 
 import Text.PrettyPrint
+import Prelude hiding ((<>))
 
 data Test
   = forall a b.
@@ -42,6 +44,11 @@ data Test
       String
       -- | Condition
       Bool
+  | Group
+      -- | Group name
+      String
+      -- | Tests
+      [Test]
 
 assertFailure ::
   -- | Test description
@@ -68,10 +75,19 @@ assertEqual ::
   Test
 assertEqual desc = Expect desc (==)
 
+group ::
+  -- | Group name
+  String ->
+  -- | Tests
+  [Test] ->
+  Test
+group = Group
+
 data Result
   = forall a b. (Show a, Show b) => FailedExpect String a b
   | Failed String
   | Passed String
+  | Multiple String [Result]
 
 prettyResult :: Result -> Doc
 prettyResult (FailedExpect n e a) =
@@ -82,12 +98,18 @@ prettyResult (FailedExpect n e a) =
     ]
 prettyResult (Failed n) = text "FAILED:" <+> text n
 prettyResult (Passed n) = text "PASSED:" <+> text n
+prettyResult (Multiple n rs) =
+  vcat
+    [ text n <> colon,
+      nest 2 . vcat . map prettyResult $ rs
+    ]
 
 resultToString :: Result -> String
 resultToString = render . prettyResult
 
 resultIsPassed :: Result -> Bool
 resultIsPassed (Passed _) = True
+resultIsPassed (Multiple _ rs) = all resultIsPassed rs
 resultIsPassed _ = False
 
 runTest :: Test -> Result
@@ -97,3 +119,5 @@ runTest (Expect n f e a)
 runTest (Predicate n c)
   | c = Passed n
   | otherwise = Failed n
+runTest (Group n ts) =
+  Multiple n (map runTest ts)
