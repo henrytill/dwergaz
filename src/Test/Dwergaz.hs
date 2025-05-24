@@ -12,15 +12,15 @@
 --
 -- See the <https://github.com/henrytill/dwergaz/blob/master/test/Main.hs tests> for a usage example.
 module Test.Dwergaz
-  ( Test (..),
-    assertFailure,
-    assertBool,
-    assertEqual,
-    group,
-    Result,
-    resultToString,
-    resultIsPassed,
-    runTest,
+  ( Test (..)
+  , assertFailure
+  , assertBool
+  , assertEqual
+  , group
+  , Result
+  , resultToString
+  , resultIsPassed
+  , runTest
   )
 where
 
@@ -92,16 +92,16 @@ data Result
 prettyResult :: Result -> Doc
 prettyResult (FailedExpect n e a) =
   vcat
-    [ text "FAILED:" <+> text n,
-      nest 2 (text "EXPECTED:") <+> text (show e),
-      nest 2 (text "ACTUAL:") <+> text (show a)
+    [ text "FAILED:" <+> text n
+    , nest 2 (text "EXPECTED:") <+> text (show e)
+    , nest 2 (text "ACTUAL:") <+> text (show a)
     ]
 prettyResult (Failed n) = text "FAILED:" <+> text n
 prettyResult (Passed n) = text "PASSED:" <+> text n
 prettyResult (Multiple n rs) =
   vcat
-    [ text n <> colon,
-      nest 2 . vcat . map prettyResult $ rs
+    [ text n <> colon
+    , nest 2 . vcat . map prettyResult $ rs
     ]
 
 resultToString :: Result -> String

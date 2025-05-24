@@ -30,21 +30,21 @@ exampleTests :: [Test]
 exampleTests =
   [ group
       "Expect"
-      [ expectExample01,
-        expectExample02
-      ],
-    group
+      [ expectExample01
+      , expectExample02
+      ]
+  , group
       "Predicate"
-      [ predicateExample01,
-        predicateExample02,
-        predicateExample03
+      [ predicateExample01
+      , predicateExample02
+      , predicateExample03
       ]
   ]
 
 step :: Result -> (ShowS, Bool) -> (ShowS, Bool)
 step result (f, allPassed) =
-  ( showString (resultToString result) . showChar '\n' . f,
-    resultIsPassed result && allPassed
+  ( showString (resultToString result) . showChar '\n' . f
+  , resultIsPassed result && allPassed
   )
 
 results :: (String, Bool)
