@@ -56,3 +56,7 @@
 
 * Updated copyright dates.
 * Tweaked documentation.
+
+## 0.3.1.0  -- 2025-06-19
+
+* Added a `Group` constructor and a corresponding `group` function for creating a group of tests.
