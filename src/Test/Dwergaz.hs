@@ -37,7 +37,7 @@ data Test
       (a -> b -> Bool)
       -- | Expected value
       a
-      -- | Actual value
+      -- | Obtained value
       b
   | Predicate
       -- | Test description
@@ -70,7 +70,7 @@ assertEqual ::
   String ->
   -- | Expected value
   a ->
-  -- | Actual value
+  -- | Obtained value
   a ->
   Test
 assertEqual desc = Expect desc (==)
@@ -90,11 +90,11 @@ data Result
   | Multiple String [Result]
 
 prettyResult :: Result -> Doc
-prettyResult (FailedExpect n e a) =
+prettyResult (FailedExpect n e o) =
   vcat
     [ text "FAILED:" <+> text n
     , nest 2 (text "EXPECTED:") <+> text (show e)
-    , nest 2 (text "ACTUAL:") <+> text (show a)
+    , nest 2 (text "OBTAINED:") <+> text (show o)
     ]
 prettyResult (Failed n) = text "FAILED:" <+> text n
 prettyResult (Passed n) = text "PASSED:" <+> text n
@@ -113,9 +113,9 @@ resultIsPassed (Multiple _ rs) = all resultIsPassed rs
 resultIsPassed _ = False
 
 runTest :: Test -> Result
-runTest (Expect n f e a)
-  | f e a = Passed n
-  | otherwise = FailedExpect n e a
+runTest (Expect n f e o)
+  | f e o = Passed n
+  | otherwise = FailedExpect n e o
 runTest (Predicate n c)
   | c = Passed n
   | otherwise = Failed n
