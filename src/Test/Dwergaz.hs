@@ -3,7 +3,7 @@
 -- |
 -- Module      : Test.Dwergaz
 -- Description : A minimal testing library
--- Copyright   : (c) 2017-2025, Henry Till
+-- Copyright   : (c) 2017-2026, Henry Till
 -- License     : ISC
 -- Maintainer  : henrytill@gmail.com
 -- Stability   : experimental
